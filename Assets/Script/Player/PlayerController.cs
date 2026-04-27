@@ -11,18 +11,20 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] float _speed = 3;
+       
         InputHandler _inputHandler;
        public InputValue _inputValue { get;private set; }
 
-         
-       public PlayerInteraction playerInteraction { get; private set; }
-        public float Speed { get => _speed; set => _speed = value; }
-      [HideInInspector] public GameObject _road, _grass;
+
+        private PlayerInteraction playerInteraction;
+        private Movement _Movement;
+
+        [HideInInspector] public GameObject _road, _grass;
 
         public ParticleSystem[] _particles;
         public ParticleSystem[] _Sparkparticles;
         public GameManager GameManager;
+        public SoundManager _SoundManager;
 
         public cinemachineControl _cinema;
         Animator _anim;
@@ -61,6 +63,7 @@ namespace Player
             _grass = GameObject.Find("Grass").gameObject;
             playerInteraction = GetComponent<PlayerInteraction>();
             _coll = GetComponentInChildren<Collider>();
+            _SoundManager = FindFirstObjectByType<SoundManager>();
            _anim = GetComponentInChildren<Animator>();
            
         }
@@ -69,20 +72,13 @@ namespace Player
         void Update()
         {
 
-            _impulseSpeed.GenerateImpulse();
 
 
 
+            _Movement.Move(_inputValue._Movement.x,transform.right);
 
-
-            if(_inputValue._Movement.magnitude > 0.5f)
-            {
-
-             Speed += 2 *  Time.deltaTime ;
-             transform.position += Vector3.Slerp(Vector3.zero, transform.right * _inputValue._Movement.x , _speed * Time.deltaTime);
-            }
-            else
-            Speed = 8.5f;
+            
+            
 
             if (_inputValue._Movement.x > 0) { _Sparkparticles[0].Play(); _Sparkparticles[1].Stop(); }
             else if (_inputValue._Movement.x < 0) { _Sparkparticles[1].Play(); _Sparkparticles[0].Stop(); }
@@ -159,20 +155,20 @@ namespace Player
 
           
 
-          var source = FindObjectOfType<SoundManager>()._sounds[0]._source;
+          var source = _SoundManager._sounds[0]._source;
             
             if(source.isPlaying != true)
-                FindObjectOfType<SoundManager>().PlayAccel();
-             FindObjectOfType<SoundManager>().Stop("Motor");
+                _SoundManager.PlayAccel();
+             _SoundManager.Stop("Motor");
             _coll.isTrigger = true;
            
         }
         public void ActiveColl()
         {
             CinemachineImpulseManager.Instance.Clear();
-            FindObjectOfType<SoundManager>().StopAccel();
+            _SoundManager.StopAccel();
 
-            FindObjectOfType<SoundManager>().Play("Motor");
+            _SoundManager.Play("Motor");
 
             _coll.isTrigger = false;
            

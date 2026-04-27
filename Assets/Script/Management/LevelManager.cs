@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
         get
         {
             if(_IsDead) GameManager.Instance.OnDeath.Invoke();
-            return IsDead;
+            return _IsDead;
         }
     }
 

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\Management\GameManager.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Script\Movement.cs" />
     <Compile Include="Assets\Script\Input\PlayerInputActions.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunAim.cs" />
     <Compile Include="Assets\Script\Management\LevelManager.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Script\Camera\CinemachineController.cs" />
     <Compile Include="Assets\Script\Management\Scrolling.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
+    <Compile Include="Assets\Script\Player\PlayerFeedback.cs" />
     <Compile Include="Assets\Script\PostProcessing.cs" />
     <Compile Include="Assets\Script\TextGameFeel.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
