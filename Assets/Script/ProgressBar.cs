@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ProgressBar : MonoBehaviour
 {
 
-    public float Health;
+    public float Value;
     private float lerpTimer;
     public float maxHealth = 100f;
     public float chipSpeed = 2f;
@@ -31,7 +31,7 @@ public class ProgressBar : MonoBehaviour
 
     private void Start()
     {
-        Health = Mathf.Clamp(Health, 0, maxHealth);
+        Value = Mathf.Clamp(Value, 0, maxHealth);
 
     }
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class ProgressBar : MonoBehaviour
     {
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
-        float hFraction = Health / maxHealth;
+        float hFraction = Value / maxHealth;
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
@@ -70,13 +70,13 @@ public class ProgressBar : MonoBehaviour
 
     public void RestoreBar()
     {
-        Health += recoveryRate * Time.deltaTime;
+        Value += recoveryRate * Time.deltaTime;
         
        
     }
     public void RestoringBar(float addHealth)
     {
-        Health += addHealth;
+        Value += addHealth;
         
         lerpTimer = 0;
     }
@@ -85,11 +85,11 @@ public class ProgressBar : MonoBehaviour
        
 
 
-        if (Health > 0)
+        if (Value > 0)
         {
 
-             Health -= boostConsumptionRate * Time.deltaTime;
-            Health = Mathf.Clamp(Health, 0, maxHealth);
+             Value -= boostConsumptionRate * Time.deltaTime;
+            Value = Mathf.Clamp(Value, 0, maxHealth);
             lerpTimer = 0;
 
         }
