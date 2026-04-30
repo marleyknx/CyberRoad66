@@ -6,7 +6,7 @@ using static UnityEngine.ParticleSystem;
 
 public class PlayerFeedback : MonoBehaviour
 {
-    Collider _coll;
+    [SerializeField] Collider _coll;
     public ParticleSystem[] _particles;
     public ParticleSystem[] _Sparkparticles;
     private SoundManager _SoundManager;
@@ -14,12 +14,13 @@ public class PlayerFeedback : MonoBehaviour
     [SerializeField] CinemachineImpulseSource _impulse;
     [SerializeField] CinemachineImpulseSource _Accelimpulse;
 
-    public float _AccelValue;
+  [HideInInspector]   public float _AccelValue;
    public Explosion _Explosion;
+    public bool _IsInvincible;
 
     private void Awake()
     {
-        _coll = GetComponent<Collider>();
+       
         _SoundManager = FindFirstObjectByType<SoundManager>();
     }
 
@@ -46,6 +47,7 @@ public class PlayerFeedback : MonoBehaviour
 
      public void PlaySparkParticle(float amount)
     {
+        foreach (var particle in _Sparkparticles) if (particle == null) return;
         switch (amount)
         {
             case > 0:
@@ -69,13 +71,15 @@ public class PlayerFeedback : MonoBehaviour
     public void PlayInvincibility()
     {
         _coll.isTrigger = true;
+        _IsInvincible = true;
         StartCoroutine(StopInvicibility());
     }
 
     IEnumerator StopInvicibility()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         _coll.isTrigger = false;
+        _IsInvincible = false;
 
     }
     public void DashScreenShake() => _Accelimpulse.GenerateImpulse();
@@ -83,9 +87,6 @@ public class PlayerFeedback : MonoBehaviour
     {
         DashScreenShake();
         // _audioSource.Stop();
-
-
-
         var source = _SoundManager._sounds[0]._source;
 
         if (source.isPlaying != true)

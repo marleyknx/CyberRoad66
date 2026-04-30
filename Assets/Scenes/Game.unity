@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 111449784}
   - component: {fileID: 111449786}
-  - component: {fileID: 111449785}
   m_Layer: 0
   m_Name: PlayerRumbleSpeed
   m_TagString: Untagged
@@ -152,19 +151,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 348962735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &111449785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111449783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc92bf52234f3341919d94619d95ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 637637212}
 --- !u!114 &111449786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +780,8 @@ GameObject:
   - component: {fileID: 358985095}
   - component: {fileID: 358985097}
   - component: {fileID: 358985098}
+  - component: {fileID: 358985099}
+  - component: {fileID: 358985100}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -813,19 +801,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364cdafc00706034691eba32fb8b0e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
   _road: {fileID: 0}
   _grass: {fileID: 0}
-  _particles:
-  - {fileID: 521929137}
-  - {fileID: 589289509}
-  _Sparkparticles:
-  - {fileID: 2015974670}
-  - {fileID: 1194786352}
   GameManager: {fileID: 799515995}
   _cinema: {fileID: 1912695696}
-  _impulse: {fileID: 1068945994}
-  _impulseSpeed: {fileID: 111449786}
 --- !u!114 &358985092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +927,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a621b3132334064d9ebeb46369d750b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &358985099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358985090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977ca7b1570428846b37d9ecdd7227c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 8
+--- !u!114 &358985100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358985090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950a1fa194d581446900177967748226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coll: {fileID: 2102754575}
+  _particles:
+  - {fileID: 521929137}
+  - {fileID: 589289509}
+  _Sparkparticles:
+  - {fileID: 2015974670}
+  - {fileID: 1194786352}
+  _impulse: {fileID: 1068945994}
+  _Accelimpulse: {fileID: 111449786}
+  _AccelValue: 0
+  _Explosion: {fileID: 995779537}
+  _IsInvincible: 0
 --- !u!1 &421742275
 GameObject:
   m_ObjectHideFlags: 0
@@ -11738,6 +11754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995779536}
+  - component: {fileID: 995779537}
   m_Layer: 0
   m_Name: ExplosionFx
   m_TagString: Untagged
@@ -11761,6 +11778,20 @@ Transform:
   - {fileID: 637637210}
   m_Father: {fileID: 358985094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995779537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995779535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc92bf52234f3341919d94619d95ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 637637212}
+  _impulse: {fileID: 1068945994}
 --- !u!1 &1012296739
 GameObject:
   m_ObjectHideFlags: 0
@@ -11935,7 +11966,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1068945995}
   - component: {fileID: 1068945994}
-  - component: {fileID: 1068945996}
   m_Layer: 0
   m_Name: PlayerRumble
   m_TagString: Untagged
@@ -12011,19 +12041,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 348962735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1068945996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068945993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc92bf52234f3341919d94619d95ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 637637212}
 --- !u!1 &1071437807
 GameObject:
   m_ObjectHideFlags: 0
@@ -12211,7 +12228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb5d6ef2dd121447b8dae6bbb7fc9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 50
+  Value: 0
   maxHealth: 100
   chipSpeed: 2.5
   frontHealthBar: {fileID: 130584871}
@@ -17958,7 +17975,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550956066}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c576739a1d76a5044a98115b23729111, type: 3}
   m_Name: 

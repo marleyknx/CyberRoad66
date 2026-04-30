@@ -56,7 +56,8 @@ namespace Player
 
         void Update()
         {
-            _feedback._AccelValue = playerInteraction.progressBar.Value; 
+            _feedback._AccelValue = playerInteraction.progressBar.Value;
+            _feedback.PlaySparkParticle(_inputHandler._inputValue._Movement.x);
 
             _Movement.Move(_inputValue._Movement.x,transform.right);
 
@@ -106,8 +107,8 @@ namespace Player
         {
             if (other.CompareTag("Car"))
             {
-                _feedback.PlayInvincibility();
                _feedback._Explosion.OnExplosion?.Invoke();
+                _feedback.PlayInvincibility();
             }
         }
 
@@ -129,13 +130,16 @@ namespace Player
 
 
 
-                
-                LevelManager level = FindFirstObjectByType<LevelManager>();
+                if (!_feedback._IsInvincible)
+                {
+                    Debug.Log("Detruis");
+                LevelManager level = FindAnyObjectByType<LevelManager>();
                 level._IsDead = true;
                 GameObject model = transform.GetChild(0).gameObject;
                 Destroy(model);
-                Explosion go = GetComponent<Explosion>();
-                go.OnExplosion?.Invoke();
+                
+                _feedback._Explosion.OnExplosion?.Invoke();
+                }
               
 
             }

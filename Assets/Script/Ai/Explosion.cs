@@ -8,12 +8,12 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] ParticleSystem _particleSystem;
     public  Action OnExplosion;
-    CinemachineImpulseSource _impulse;
+   [SerializeField] CinemachineImpulseSource _impulse;
 
 
     private void Awake()
     {
-            _impulse = GetComponentInParent<CinemachineImpulseSource>();
+           
 
     }
 
@@ -43,7 +43,7 @@ public class Explosion : MonoBehaviour
     IEnumerator StopExplosion()
     {
         yield return new WaitForSeconds(1);
-       Destroy(transform.parent.gameObject);
+        _particleSystem.gameObject.SetActive(false);
     }
     public void GetScreenShake()
     {
